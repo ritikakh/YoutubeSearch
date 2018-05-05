@@ -8,18 +8,25 @@ class SearchBar extends Component{
     constructor(props) {
         super(props); //calling the parent method of Component
 
-        this.state = {next: 'search'}; //initiallizing state
+        this.state = {term: ''}; //initiallizing state
     }
     render () {
         return (
-            <div>
+            <div className="search-bar">
                 <input
-                    value = {this.state.next}
-                    onChange={event => this.setState({next: event.target.value})}
+                    placeholder="search video"
+                    value = {this.state.term}
+                    onChange={event => this.onInputChange(event.target.value)}
                 />
             </div>
         );
     }
+
+    onInputChange(term) {
+        this.setState({term});
+        this.props.onSearchTermChange(term);
+    }
+
 }
 
 
